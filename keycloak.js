@@ -402,7 +402,9 @@ Keycloak.prototype.loginUrl = function (uuid, redirectUrl) {
 Keycloak.prototype.logoutUrl = function (redirectUrl) {
   return this.config.realmUrl +
   '/protocol/openid-connect/logout' +
-  '?redirect_uri=' + encodeURIComponent(redirectUrl);
+  '?post_logout_redirect_uri=' + encodeURIComponent(redirectUrl)
++ '&id_token_hint=' + encodeURIComponent(kc.idToken);
+  //'?redirect_uri=' + encodeURIComponent(redirectUrl);
 };
 
 Keycloak.prototype.accountUrl = function () {
@@ -422,3 +424,4 @@ Keycloak.prototype.getConfig = function () {
 };
 
 module.exports = Keycloak;
+
